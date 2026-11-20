@@ -1,0 +1,89 @@
+/* Real-time beaker handling and liquid controls */
+.scene.is-held canvas { cursor: grabbing; }
+.scene.is-rotating canvas { cursor: crosshair; }
+.handling-controls {
+  position: absolute;
+  z-index: 24;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  width: min(620px, calc(100vw - 360px));
+  padding: 10px 12px;
+  border: 1px solid #a9e6d54d;
+  border-radius: 13px;
+  background: #0c1412ed;
+  box-shadow: 0 12px 34px #0008;
+  display: grid;
+  gap: 8px;
+  pointer-events: auto;
+}
+.handling-state {
+  color: #bde9dd;
+  font: 700 9px/1.3 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: .12em;
+  text-align: center;
+}
+.handling-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 7px; }
+.handling-buttons button {
+  min-height: 34px;
+  padding: 0 11px;
+  color: #dcebe4;
+  background: #ffffff0a;
+  border: 1px solid #c8e5d92e;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 650;
+}
+.handling-buttons button:hover, .handling-buttons button.is-active {
+  color: #eafff6;
+  background: #2f8d6c55;
+  border-color: #8fe2c1a8;
+}
+#handling-pour { color: #bde7f4; border-color: #77cce84a; }
+#handling-cancel { color: #e8b7b1; }
+.liquid-setup {
+  margin-top: 12px;
+  padding-top: 11px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 7px;
+}
+.liquid-setup-heading { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.liquid-setup-heading span { color: #91a59a; font: 750 8px/1.2 ui-monospace, monospace; letter-spacing: .13em; }
+.liquid-setup-heading strong { color: #bde6d8; font: 650 9px/1.3 ui-monospace, monospace; text-align: right; }
+.liquid-setup label { color: #c6d2cc; font-size: 9px; font-weight: 600; }
+.liquid-volume-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 7px; }
+.liquid-volume-row input {
+  min-width: 0;
+  width: 100%;
+  height: 34px;
+  padding: 0 9px;
+  color: var(--text);
+  background: #111918;
+  border: 1px solid #c5dcd126;
+  border-radius: 8px;
+  font: 600 11px ui-monospace, monospace;
+}
+.liquid-volume-row button {
+  min-height: 34px;
+  padding: 0 10px;
+  color: #0b2119;
+  background: #a8dfcf;
+  border: 1px solid #b4e8d86b;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 9px;
+  font-weight: 750;
+}
+.liquid-volume-row button:disabled, .liquid-volume-row input:disabled { opacity: .45; cursor: not-allowed; }
+.liquid-setup > small { color: #84968d; font-size: 8px; line-height: 1.45; }
+@media (width <= 760px) {
+  .handling-controls { bottom: max(12px, env(safe-area-inset-bottom)); width: calc(100vw - 22px); }
+  .handling-buttons { gap: 5px; }
+  .handling-buttons button { min-height: 38px; padding: 0 9px; }
+  .scene.is-held .scene-help, .scene.is-rotating .scene-help { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .handling-controls, .handling-buttons button { transition: none !important; }
+}

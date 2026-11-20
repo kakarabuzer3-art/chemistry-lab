@@ -1,0 +1,101 @@
+[
+  {
+    "name": "Open the lab with a measurable water sample",
+    "sanity": true,
+    "viewport": "desktop",
+    "covers": [
+      "3D scene initialization",
+      "default beaker geometry",
+      "initial water volume display",
+      "inventory ready state"
+    ],
+    "description": "Verifies the initial 250 mL beaker and its sample water volume are represented in the scene inventory.",
+    "steps": [
+      "Open the Chemistry Beaker Lab",
+      "Wait for the 3D scene to initialize",
+      "Inspect the first Scene inventory item"
+    ],
+    "expected": "The scene status reads READY and the 250 mL B001 beaker appears with 150 mL water."
+  },
+  {
+    "name": "Edit a beaker water volume within its capacity",
+    "viewport": "desktop",
+    "covers": [
+      "beaker selection",
+      "liquid volume input",
+      "capacity limit",
+      "liquid level and inventory synchronization"
+    ],
+    "description": "Verifies a selected beaker accepts an explicit water quantity and reflects the same value in its inventory record.",
+    "steps": [
+      "Open View B001 specifications from Scene inventory",
+      "Set Water volume to 225 mL",
+      "Click Set volume",
+      "Check the liquid volume label and Scene inventory"
+    ],
+    "expected": "The selected 250 mL beaker reports 225 mL of water and its inventory text updates to the same quantity."
+  },
+  {
+    "name": "Grab, rotate, lift and safely cancel a beaker",
+    "viewport": "desktop",
+    "covers": [
+      "pointer grab and hold",
+      "R rotation mode",
+      "Shift automatic lift",
+      "holding toolbar",
+      "Escape cancellation",
+      "camera control restoration"
+    ],
+    "description": "Verifies the manipulation workflow enters rotation and lift modes and Escape restores the beaker to its original safe transform.",
+    "steps": [
+      "Click and drag the 250 mL beaker in the 3D stage",
+      "Press R and drag to change its orientation",
+      "Press Shift to activate automatic lifting",
+      "Verify the handling state reports the lifted state",
+      "Press Escape to cancel the manipulation"
+    ],
+    "expected": "The beaker can be grabbed and reoriented, the lift state activates, Escape restores its starting position and orientation, and normal camera controls are available again."
+  },
+  {
+    "name": "Place a second beaker with the existing ghost preview",
+    "viewport": "desktop",
+    "covers": [
+      "capacity selection",
+      "placement preview preservation",
+      "green and red collision validation",
+      "permanent beaker creation",
+      "inventory count"
+    ],
+    "description": "Verifies the latest handling changes retain the live 3D placement preview and collision guardrails.",
+    "steps": [
+      "Choose 500 mL in the Beaker capacity selector",
+      "Click Pick & Place Beaker",
+      "Move the ghost over an empty visible area of the lab until it is cyan",
+      "Confirm placement with a click",
+      "Verify the new beaker appears in Scene inventory"
+    ],
+    "expected": "The temporary ghost is shown before confirmation, the valid location is cyan, and one permanent 500 mL beaker is added after the valid click."
+  },
+  {
+    "name": "Preserve inventory, recycle and mobile handling controls",
+    "viewport": "mobile",
+    "covers": [
+      "mobile responsive layout",
+      "touch beaker grab",
+      "Rotate and Lift buttons",
+      "hold-to-pour press and release",
+      "place and cancel controls",
+      "recycle restore"
+    ],
+    "description": "Verifies the compact touch controls remain available during handling and that the inventory recycle workflow is retained.",
+    "steps": [
+      "Open the lab at a mobile viewport",
+      "Touch and hold a visible beaker in the 3D stage",
+      "Use the Rotate and Lift controls in the handling toolbar",
+      "Press and release Hold to pour",
+      "Use Cancel to return the beaker safely",
+      "Remove a beaker from Scene inventory, open Recycle Bin, and restore it"
+    ],
+    "expected": "The mobile handling toolbar provides the same controls, releasing Hold to pour stops transfer requests, Cancel ends manipulation safely, and a removed beaker can be restored."
+  }
+]
